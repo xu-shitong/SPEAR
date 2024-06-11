@@ -1,6 +1,18 @@
 # Receiver2Receiver-Warp-Field
 
-# generate data
+## generate synthetic data
+To generate the synthetic train and validation data using pyroomacoustic, run the following command
+```
+
+
+```
+
+
+
+
+Generate the 
+
+
 only need to change line 13 to 26 line, and line 88, line 119 and line 120
 
 step_size: distance between mics, meansured in meters

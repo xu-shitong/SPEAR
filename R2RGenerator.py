@@ -7,23 +7,23 @@ import pickle
 import soundfile
 import random
 import torch 
+import sys
 
 sigma2_awgn = None
-# zero_z = True
 step_size = 0.05
-audio_name = "full_sine_sweep" # scale 2000
-# audio_name = "engine_1" # scale 10000
-# audio_name = "person_1" # scale 5000
-# audio_name = "concrete-footsteps-6752-1sec" # scale 2000
+audio_name = "full_sine_sweep.wav" # scale 2000
 scale = 2000
 
-# train = True
-# data_dir = f"./grid-sample_{audio_name}-scale-{scale}-step-{step_size}_no-varyZ_train_data"
-# random_seed = 1000
-
-train = False
-data_dir = f"./grid-sample_{audio_name}-scale-{scale}-step-{step_size}_no-varyZ_val_data"
-random_seed = 43
+if sys.argv[1] == "train":
+    train = True
+    data_dir = f"./grid-sample_{audio_name}-scale-{scale}-step-{step_size}_no-varyZ_train_data"
+    random_seed = 1000
+elif sys.argv[1] == "val":
+    train = False
+    data_dir = f"./grid-sample_{audio_name}-scale-{scale}-step-{step_size}_no-varyZ_val_data"
+    random_seed = 43
+else:
+    raise NotImplementedError(sys.argv[1])
 
 sample_rate = 16384
 
@@ -79,8 +79,7 @@ class SoundNeRFDataGenerator():
         return room, [room_Lx, room_Ly, room_Lz], [e_abs, e_scatter]
 
     def add_sound_sources(self, pra_room ):
-        seed_sound_filename = f'res/{audio_name}.wav'
-        # seed_sound_filename = 'cvtk/DR-VCTK/DR-VCTK/clean_trainset_wav_16k/p226_005.wav'
+        seed_sound_filename = audio_name
 
         audio_anechoic, sr = librosa.load(seed_sound_filename, sr=sample_rate)
         audio_anechoic = audio_anechoic[:sample_rate]
@@ -92,32 +91,9 @@ class SoundNeRFDataGenerator():
         return pra_room, ss_loc
 
     def add_mono_microphones(self, pra_room):
-        # microphone_num = mic_num
-        # x_loc = np.random.uniform(low=0.5, high=4.5, size=(microphone_num+200))
-        # y_loc = np.random.uniform(low=0.5, high=2.5, size=(microphone_num+200))
-        # if zero_z:
-        #     # z_loc = np.ones((microphone_num+200)) * 0.5
-        #     z_loc = np.zeros((microphone_num+200))
-        # else:
-        #     z_loc = np.random.uniform(low=0.5, high=3.5, size=(microphone_num+200))
-
-        # mic_loc = np.stack(arrays=(x_loc,y_loc,z_loc), axis=-1)
-
-        # ss_loc = np.array([2., 2., 2.])
-        # ss_loc = np.reshape(ss_loc, newshape=[1,3])
-        # ss_loc = np.tile(ss_loc, reps=[mic_loc.shape[0], 1])
-
-        # sqrt_eucdist = np.sqrt(np.sum(np.square(mic_loc-ss_loc), axis=1))
-
-        # mic_loc = mic_loc[sqrt_eucdist>0.5]
-
-        # assert mic_loc.shape[0] >= microphone_num
-
-        # mic_loc = mic_loc[0:microphone_num,:]
-
         # Generate the grid of coordinates
-        x_coords = np.arange(0.5, 4.5, step_size)
-        y_coords = np.arange(0.5, 2.5, step_size)
+        x_coords = np.arange(0.0, 5, step_size)
+        y_coords = np.arange(0.0, 3, step_size)
         X, Y = np.meshgrid(x_coords, y_coords)
 
         # Flatten the grid coordinates for easier processing
@@ -147,7 +123,6 @@ class SoundNeRFDataGenerator():
         else:
             mic_loc = selected_coords
 
-        # mic_loc = np.array([[1.,1.,1.],[20.,20.,15.]],np.float64)
         for mic_loc_tmp in mic_loc:
             pra_room.add_microphone(loc=mic_loc_tmp, fs=pra_room.fs)
 
