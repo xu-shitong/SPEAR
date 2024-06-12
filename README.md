@@ -1,3 +1,63 @@
+## SPEAR: Receiver-to-Receiver Acoustic Neural Warping Field
+
+<a href="https://openreview.net/forum?id=240kYyCiaP"><img src=res/SPEAR_mot.pdf></a>
+[Yuhang He](https://yuhanghe01.github.io/),
+[Shitong Xu](https://github.com/xu-shitong),
+[Jiaxing Zhong](https://www.cs.ox.ac.uk/people/jiaxing.zhong/),
+[Sangyun Shin](https://www.cs.ox.ac.uk/people/sangyun.shin/),
+[Niki Trigoni](https://www.cs.ox.ac.uk/people/niki.trigoni/),
+[Andrew Markham](https://www.cs.ox.ac.uk/people/andrew.markham/)<br>
+Cyber-Physical Systems Group, Department of Computer Science, University of Oxford
+> **Abstract**: 
+We present *SPEAR*, a continuous receiver-to-receiver acoustic neural warping field for spatial acoustic effects prediction in an acoustic 3D space with a single stationary audio source. Unlike traditional source-to-receiver modelling methods that require prior space acoustic properties knowledge to rigorously model audio propagation from source to receiver, we propose to predict by warping the spatial acoustic effects from one reference receiver position to another target receiver position, so that the warped audio essentially accommodates all spatial acoustic effects belonging to the target position. *SPEAR* can be trained in a data much more readily accessible manner, in which we simply ask two robots to independently record spatial audio at different positions. We further theoretically prove the universal existence of the warping field if and only if one audio source presents. Three physical principles are incorporated to guide *SPEAR* network design, leading to the learned warping field physically meaningful. We demonstrate *SPEAR* superiority on both synthetic, photo-realistic and real-world dataset, showing the huge potential of *SPEAR* to various down-stream robotic tasks.
+
+
+
+
+<!-- Details of the model architecture and experimental results can be found in [our paper](https://arxiv.org/abs/2312.11269). -->
+
+## Quick Demo :fire:
+
+### [ScanNetv2](https://kaldir.vc.in.tum.de/scannet_benchmark/semantic_instance_3d?metric=ap)
+
+| Dataset | AP | AP_50 | Config | Checkpoint
+|:-:|:-:|:-:|:-:|:-:|
+| ScanNet val | 62.6 | 81.9 | [config](configs/scannetv2/spherical_mask.yaml) | [checkpoint](https://drive.google.com/file/d/1WJtBr3nxaCaGCA_z1_dpu9bISnPAoxoL/view?usp=drive_link) 
+     
+* December, 2023: Spherical Mask achieves state-of-the-art in ScanNet-V2 3D instance segmentation. [[Link]](https://kaldir.vc.in.tum.de/scannet_benchmark/semantic_instance_3d?metric=ap) [[Screenshot]](docs/leaderboard_2204.png)
+  
+For the best training result, we recommend initializing the encoder with the pretrained-weights checkpoint([Download](https://drive.google.com/file/d/1OeHRgkEkxvPkUOrFacmNUevrrAjHW6DA/view?usp=drive_link)) from [ISBNet](https://arxiv.org/abs/2303.00246). 
+After downloading the pre-trained weights, please specify the path in configs/scannetv2/spherical_mask.yaml
+```shell
+# train 
+python tools/train.py configs/scannetv2/spherical_mask.yaml --trainall --exp_name defaults
+# test
+python tools/test.py configs/scannetv2/spherical_mask.yaml --ckpt path_to_ckpt.pth
+```
+The code has been tested using torch==1.12.1 and cuda==11.3 on Ubuntu 20.04. 
+
+**Please CITE** our paper if you found this repository helpful for producing publishable results or incorporating it into other software.
+```bibtext
+@inproceedings{shin2024spherical,
+ author={Sangyun Shin, Kaichen Zhou, Madhu Vankadari, Andrew Markham, Niki Trigoni},
+ booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+ title={Spherical Mask: Coarse-to-Fine 3D Point Cloud Instance Segmentation with Spherical Representation},
+ year= {2024}
+}
+```
+
+## Datasets :floppy_disk:
+
+- [x] ScanNetV2
+
+## Acknowledgements :clap:
+This repo is built upon [ISBNet](https://github.com/VinAIResearch/ISBNet), [SpConv](https://github.com/traveller59/spconv), [DyCo3D](https://github.com/aim-uofa/DyCo3D), [SSTNet](https://github.com/Gorilla-Lab-SCUT/SSTNet), and [SoftGroup](https://github.com/thangvubk/SoftGroup). 
+
+## Contacts :email:
+If you have any questions or suggestions about this repo, please feel free to contact me (kimshin812@gmail.com or sangyun.shin@cs.ox.ac.uk).
+
+
+
 # Receiver2Receiver-Warp-Field
 
 ## Create envirionment
