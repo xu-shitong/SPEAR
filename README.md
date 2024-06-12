@@ -18,6 +18,27 @@ We present *SPEAR*, a continuous receiver-to-receiver acoustic neural warping fi
 
 ## Quick Demo :fire:
 
+todo: insert main result plot
+todo: insert main result performance metric table
+
+### Create envirionment
+The experiment environment is given in file `environment.txt`. The code has been tested on Ubuntu 22.04.
+
+### Generate synthetic data
+To generate the synthetic train and validation data using pyroomacoustic, run the following command
+```shell
+python R2RGenerator.py train
+python R2RGenerator.py val
+```
+
+### Train
+To train a model, run 
+```shell
+python main.py Hyperparameter.yaml
+```
+
+
+<!-- 
 ### [ScanNetv2](https://kaldir.vc.in.tum.de/scannet_benchmark/semantic_instance_3d?metric=ap)
 
 | Dataset | AP | AP_50 | Config | Checkpoint
@@ -34,31 +55,26 @@ python tools/train.py configs/scannetv2/spherical_mask.yaml --trainall --exp_nam
 # test
 python tools/test.py configs/scannetv2/spherical_mask.yaml --ckpt path_to_ckpt.pth
 ```
-The code has been tested using torch==1.12.1 and cuda==11.3 on Ubuntu 20.04. 
+The code has been tested using torch==1.12.1 and cuda==11.3 on Ubuntu 20.04.  -->
 
 **Please CITE** our paper if you found this repository helpful for producing publishable results or incorporating it into other software.
 ```bibtext
-@inproceedings{shin2024spherical,
- author={Sangyun Shin, Kaichen Zhou, Madhu Vankadari, Andrew Markham, Niki Trigoni},
- booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
- title={Spherical Mask: Coarse-to-Fine 3D Point Cloud Instance Segmentation with Spherical Representation},
- year= {2024}
-}
+todo
 ```
 
-## Datasets :floppy_disk:
+<!-- ## Datasets :floppy_disk:
 
-- [x] ScanNetV2
+- [x] ScanNetV2 -->
 
 ## Acknowledgements :clap:
-This repo is built upon [ISBNet](https://github.com/VinAIResearch/ISBNet), [SpConv](https://github.com/traveller59/spconv), [DyCo3D](https://github.com/aim-uofa/DyCo3D), [SSTNet](https://github.com/Gorilla-Lab-SCUT/SSTNet), and [SoftGroup](https://github.com/thangvubk/SoftGroup). 
+todo
 
 ## Contacts :email:
-If you have any questions or suggestions about this repo, please feel free to contact me (kimshin812@gmail.com or sangyun.shin@cs.ox.ac.uk).
+If you have any questions or suggestions about this repo, please feel free to contact me (todo).
 
 
 
-# Receiver2Receiver-Warp-Field
+<!-- # Receiver2Receiver-Warp-Field
 
 ## Create envirionment
 The experiment environment is given in file `environment.txt` 
@@ -123,4 +139,4 @@ python useful_files/main_fft.py useful_files/Hyperparameter_1d_fft.yaml
 3. load_model: "xxx.pt": load model in initialization and train
 4. scene_z: size of only used by model that predict mic with varying z. can ignore
 
-
+ -->
