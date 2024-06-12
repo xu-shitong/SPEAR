@@ -1,8 +1,8 @@
 import torch
-from R2RDataset import R2RDataset
+from data.R2RDataset import R2RDataset
 from torch.utils.data import DataLoader
-import NAF
-import SPEAR
+import models.NAF as NAF
+import models.SPEAR as SPEAR
 from Loss import *
 import os
 from tqdm import tqdm
