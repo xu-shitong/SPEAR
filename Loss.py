@@ -37,8 +37,8 @@ def supervise_fft_warp_field(audio_cond, audio_tgt, warp_pred, regional_loss=Fal
     fft2 = torch.fft.fft(audio_tgt, norm="backward")
     warp = (fft2 / fft1)[:, 0]
     warp = torch.nan_to_num(warp, nan=0)
-    warp.real = warp.real.clip(min=-12, max=12)
-    warp.imag = warp.imag.clip(min=-12, max=12)
+    warp.real = warp.real.clip(min=-10, max=10)
+    warp.imag = warp.imag.clip(min=-10, max=10)
 
     if scale_loss:
         ratio = torch.linspace(1, 5, pred_range, device=warp.device, requires_grad=False)
@@ -95,8 +95,8 @@ def pooled_supervision(depth, warp_pred, audio_cond, audio_tgt, l1=True, l2=True
     fft2 = torch.fft.fft(audio_tgt, norm="backward")
     warp = (fft2 / fft1)[:, 0]
     warp = torch.nan_to_num(warp, nan=0)
-    warp.real = warp.real.clip(min=-12, max=12)
-    warp.imag = warp.imag.clip(min=-12, max=12)
+    warp.real = warp.real.clip(min=-10, max=10)
+    warp.imag = warp.imag.clip(min=-10, max=10)
 
     warp_pred = warp_pred.unsqueeze(1)
     pred_real = warp_pred.real

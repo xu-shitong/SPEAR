@@ -11,7 +11,7 @@ import sys
 
 sigma2_awgn = None
 step_size = 0.05
-audio_name = "full_sine_sweep.wav" # scale 2000
+audio_name = "full_sine_sweep" # scale 2000
 scale = 2000
 
 if sys.argv[1] == "train":
@@ -79,7 +79,7 @@ class SoundNeRFDataGenerator():
         return room, [room_Lx, room_Ly, room_Lz], [e_abs, e_scatter]
 
     def add_sound_sources(self, pra_room ):
-        seed_sound_filename = audio_name
+        seed_sound_filename = f"res/{audio_name}.wav"
 
         audio_anechoic, sr = librosa.load(seed_sound_filename, sr=sample_rate)
         audio_anechoic = audio_anechoic[:sample_rate]
@@ -92,8 +92,8 @@ class SoundNeRFDataGenerator():
 
     def add_mono_microphones(self, pra_room):
         # Generate the grid of coordinates
-        x_coords = np.arange(0.0, 5, step_size)
-        y_coords = np.arange(0.0, 3, step_size)
+        x_coords = np.arange(0.5, 4.5, step_size)
+        y_coords = np.arange(0.5, 2.5, step_size)
         X, Y = np.meshgrid(x_coords, y_coords)
 
         # Flatten the grid coordinates for easier processing
@@ -109,7 +109,7 @@ class SoundNeRFDataGenerator():
         selected_coords = []
         not_selected_coords = []
         for coord in coords:
-            if len(selected_coords) < 200 and not any(is_adjacent(coord, selected, step_size) for selected in selected_coords):
+            if len(selected_coords) < 300 and not any(is_adjacent(coord, selected, step_size) for selected in selected_coords):
                 selected_coords.append(coord)
             else:
                 not_selected_coords.append(coord)

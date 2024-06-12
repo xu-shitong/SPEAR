@@ -1,10 +1,19 @@
 # Receiver2Receiver-Warp-Field
 
-## generate synthetic data
+## Create envirionment
+The experiment environment is given in file `environment.txt` 
+
+## Generate synthetic data
 To generate the synthetic train and validation data using pyroomacoustic, run the following command
 ```
+python R2RGenerator.py train
+python R2RGenerator.py val
+```
 
-
+## Train
+To train a model, run 
+```
+python main_fft.py Hyperparameter_1d_fft.yaml
 ```
 
 

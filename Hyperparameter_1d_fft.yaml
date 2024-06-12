@@ -1,6 +1,6 @@
-gpu: "2"
+gpu: "1"
 save_epoch: 2000
-epoch_num: 12000
+epoch_num: 10000
 grid_lr: !!float 1e-5
 backbone_lr: !!float 1e-4
 head_lr: !!float 1e-4
@@ -13,14 +13,14 @@ optimizer: AdamW
 class_values: []
 class_bin_size: 2
 
-# model_name: "1d_linear" 
+# model_name: "naf" 
 # grid_size: [256, 8, 16]
 # layer_channels: [512, 512, 256]
 # decoder_channels: [512, 512, 512]
 # activation: "None"
 # pred_range: 16384
 
-model_name: "1d_trans_3d_bert"
+model_name: "spear"
 grid_size: [192, 8, 16]
 layer_channels: [512, 512, 512, 384]
 tf_layer_num: 12
@@ -48,7 +48,7 @@ posB: random
 PooledLossWeight: 1.0
 SuperviseSpectrumLossWeight: 1.0
 SpectrumLossWeight: 1.0
-WarpedWaveformL2Weight: 0.01
+WarpedWaveformL2Weight: 0.02
 SelfConsistencyWeight: 0.0
 CloseRangeWeight: 0.0
 regional_loss: False

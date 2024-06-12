@@ -1,8 +1,8 @@
 import torch
 from R2RDataset import R2RDataset
 from torch.utils.data import DataLoader
-import R2R_1DLinear
-import R2R_1DTF_3d_bert
+import NAF
+import SPEAR
 from Loss import *
 import os
 from tqdm import tqdm
@@ -107,7 +107,6 @@ def main_func(args):
     mem_report()
 
     os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu
-    torch.cuda.manual_seed(42)
     if torch.cuda.is_available():
         dev = "cuda:0"
     else:
@@ -129,8 +128,8 @@ def main_func(args):
     val_dataloader = DataLoader(dataset=val_dataset, batch_size=args.batch_size, shuffle=False, drop_last=True, num_workers=6)
 
     # model
-    if args.model_name == "1d_linear":
-        model = R2R_1DLinear.R2R_1DLinear(grid_size = args.grid_size,
+    if args.model_name == "naf":
+        model = NAF.R2R_1DLinear(grid_size = args.grid_size,
                                   layer_channels=args.layer_channels, 
                                   decoder_channels=args.decoder_channels, 
                                   scene_x=args.scene_x, scene_y=args.scene_y,
@@ -138,8 +137,8 @@ def main_func(args):
                                   activation=args.activation, wave_length=args.wave_length
                                   )
         model.to(device)
-    elif args.model_name == "1d_trans_3d_bert":
-        model = R2R_1DTF_3d_bert.R2R_1DTF_3d_bert(grid_size = args.grid_size,
+    elif args.model_name == "spear":
+        model = SPEAR.R2R_1DTF_3d_bert(grid_size = args.grid_size,
                                   seg_size=args.seg_size,
                                   layer_channels=args.layer_channels,
                                   tf_layer_num=args.tf_layer_num, 
