@@ -1,6 +1,6 @@
 import torch
 from torch import nn
-from PosEnc import PosEncoder
+from .PosEnc import PosEncoder
 import math
 import torch.nn.functional as F
 import math

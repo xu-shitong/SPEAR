@@ -27,15 +27,18 @@ The experiment environment is given in file `environment.txt`. The code has been
 ### Generate synthetic data
 To generate the synthetic train and validation data using pyroomacoustic, run the following command
 ```shell
-python R2RGenerator.py train
-python R2RGenerator.py val
+python data/R2RGenerator.py train
+python data/R2RGenerator.py val
 ```
 
 ### Train
 To train a model, run 
 ```shell
-python main.py Hyperparameter.yaml
+python main.py config/Hyperparameter.yaml
 ```
+
+### Pretrained model
+The pretrained models on all 4 scenes could be found in the `pretrained_models` folder.
 
 
 <!-- 
