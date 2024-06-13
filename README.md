@@ -1,6 +1,6 @@
 ## SPEAR: Receiver-to-Receiver Acoustic Neural Warping Field
 
-<a href="https://openreview.net/forum?id=240kYyCiaP"><img src=res/SPEAR_mot.pdf></a>
+<a href="https://openreview.net/forum?id=240kYyCiaP"><img src=res/SPEAR_mot.jpg></a>
 [Yuhang He](https://yuhanghe01.github.io/),
 [Shitong Xu](https://github.com/xu-shitong),
 [Jiaxing Zhong](https://www.cs.ox.ac.uk/people/jiaxing.zhong/),
@@ -16,7 +16,7 @@ We present *SPEAR*, a continuous receiver-to-receiver acoustic neural warping fi
 
 <!-- Details of the model architecture and experimental results can be found in [our paper](https://arxiv.org/abs/2312.11269). -->
 
-## Quick Demo :fire:
+## Main results
 
 todo: insert main result plot
 todo: insert main result performance metric table
@@ -37,8 +37,8 @@ To train a model, run
 python main.py config/Hyperparameter.yaml
 ```
 
-### Pretrained model
-The pretrained models on all 4 scenes could be found in the `pretrained_models` folder.
+<!-- ### Pretrained model
+The pretrained models on all 4 scenes could be found in the `pretrained_models` folder. -->
 
 
 <!-- 
