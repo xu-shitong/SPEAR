@@ -7,7 +7,7 @@
 [Sangyun Shin](https://www.cs.ox.ac.uk/people/sangyun.shin/),
 [Niki Trigoni](https://www.cs.ox.ac.uk/people/niki.trigoni/),
 [Andrew Markham](https://www.cs.ox.ac.uk/people/andrew.markham/)<br>
-Cyber-Physical Systems Group, Department of Computer Science, University of Oxford
+Department of Computer Science, University of Oxford. Oxford. UK.
 > **Abstract**: 
 We present *SPEAR*, a continuous receiver-to-receiver acoustic neural warping field for spatial acoustic effects prediction in an acoustic 3D space with a single stationary audio source. Unlike traditional source-to-receiver modelling methods that require prior space acoustic properties knowledge to rigorously model audio propagation from source to receiver, we propose to predict by warping the spatial acoustic effects from one reference receiver position to another target receiver position, so that the warped audio essentially accommodates all spatial acoustic effects belonging to the target position. *SPEAR* can be trained in a data much more readily accessible manner, in which we simply ask two robots to independently record spatial audio at different positions. We further theoretically prove the universal existence of the warping field if and only if one audio source presents. Three physical principles are incorporated to guide *SPEAR* network design, leading to the learned warping field physically meaningful. We demonstrate *SPEAR* superiority on both synthetic, photo-realistic and real-world dataset, showing the huge potential of *SPEAR* to various down-stream robotic tasks.
 
