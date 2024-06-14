@@ -1,5 +1,5 @@
 import torch
-from SPEAR.data.Dataset import R2RDataset
+from SPEAR.data.Dataset import SPEAR_Dataset
 from torch.utils.data import DataLoader
 import models.NAF as NAF
 import models.SPEAR as SPEAR
@@ -120,10 +120,10 @@ def main_func(args):
     log.write("\n".join([str(key) + " " + str(args.get(key)) for key in args.keys()]) + "\n") # write hyperparameter in log file
 
     # dataset dataloader
-    train_dataset = R2RDataset(f"{args.dataset_tag}_train_data", sample_size=args.sample_size, clip_warped_audio=args.clip_warped_audio, 
+    train_dataset = SPEAR_Dataset(f"{args.dataset_tag}_train_data", sample_size=args.sample_size, clip_warped_audio=args.clip_warped_audio, 
                                sample_rate=args.sampling_rate, wave_length=args.wave_length, posB=args.posB, snr_db=args.snr_db, prep_kernel_size=args.prep_kernel_size)
     train_dataloader = DataLoader(dataset=train_dataset, batch_size=args.batch_size, shuffle=True, drop_last=True, num_workers=6)
-    val_dataset = R2RDataset(f"{args.dataset_tag}_val_data", sample_size=args.val_sample_size, clip_warped_audio=args.clip_warped_audio, 
+    val_dataset = SPEAR_Dataset(f"{args.dataset_tag}_val_data", sample_size=args.val_sample_size, clip_warped_audio=args.clip_warped_audio, 
                              sample_rate=args.sampling_rate, wave_length=args.wave_length, posB=args.posB, snr_db=args.snr_db, prep_kernel_size=args.prep_kernel_size)
     val_dataloader = DataLoader(dataset=val_dataset, batch_size=args.batch_size, shuffle=False, drop_last=True, num_workers=6)
 

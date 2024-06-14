@@ -6,10 +6,10 @@ from torch.utils.data import Dataset
 import re
 import random
         
-class R2RDataset(Dataset):
+class SPEAR_Dataset(Dataset):
     def __init__(self, root_dir, sample_size, clip_warped_audio=False, sample_rate=20001, 
                  wave_length=20000, posB="fixed", snr_db=0, prep_kernel_size=0):
-        super(R2RDataset, self).__init__()
+        super(SPEAR_Dataset, self).__init__()
         self.n_fft = 2048
         self.clip_warped_audio = clip_warped_audio
         self.sample_rate = sample_rate
