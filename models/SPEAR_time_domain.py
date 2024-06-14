@@ -6,11 +6,11 @@ import torch.nn.functional as F
 import math
 
 
-class R2R_1DTF_3d_bert_time_domain(nn.Module):
+class SPEAR_time_domain(nn.Module):
     def __init__(self, grid_size=[192, 8, 16], seg_size=384, layer_channels=[512, 512, 512, 384], 
                  tf_layer_num=12, scene_x=5, scene_y=3,
                  add_fix_pos=[False, False], refine_fix_pos=False, wave_length=32768):
-        super(R2R_1DTF_3d_bert_time_domain, self).__init__()
+        super(SPEAR_time_domain, self).__init__()
         assert layer_channels[-1] == seg_size
         assert layer_channels[-1] == grid_size[0] * 2
 

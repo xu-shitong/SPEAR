@@ -4,12 +4,12 @@ from .PosEnc import PosEncoder
 import math
 import torch.nn.functional as F
 
-class R2R_1DLinear(nn.Module):
+class NAF(nn.Module):
     def __init__(self, grid_size=[256, 8, 16], layer_channels=[512, 512, 256], 
                  idx_dim=512, decoder_channels=[512, 512, 512], scene_x=5, scene_y=3,
                  class_values=[], class_bin_size=2, activation="None",
                  wave_length=32768):
-        super(R2R_1DLinear, self).__init__()
+        super(NAF, self).__init__()
         # assert grid_size[0] % 6 == 0
         self.wave_length = wave_length
 

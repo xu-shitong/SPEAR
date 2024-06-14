@@ -1,5 +1,5 @@
 import torch
-from data.R2RDataset import R2RDataset
+from SPEAR.data.Dataset import R2RDataset
 from torch.utils.data import DataLoader
 import models.NAF as NAF
 import models.SPEAR as SPEAR
@@ -129,7 +129,7 @@ def main_func(args):
 
     # model
     if args.model_name == "naf":
-        model = NAF.R2R_1DLinear(grid_size = args.grid_size,
+        model = NAF.NAF(grid_size = args.grid_size,
                                   layer_channels=args.layer_channels, 
                                   decoder_channels=args.decoder_channels, 
                                   scene_x=args.scene_x, scene_y=args.scene_y,
@@ -138,7 +138,7 @@ def main_func(args):
                                   )
         model.to(device)
     elif args.model_name == "spear":
-        model = SPEAR.R2R_1DTF_3d_bert(grid_size = args.grid_size,
+        model = SPEAR.SPEAR(grid_size = args.grid_size,
                                   seg_size=args.seg_size,
                                   layer_channels=args.layer_channels,
                                   tf_layer_num=args.tf_layer_num, 
