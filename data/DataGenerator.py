@@ -18,9 +18,9 @@ if sys.argv[1] == "train":
     train = True
     data_dir = f"./grid-sample_{audio_name}-scale-{scale}-step-{step_size}_no-varyZ_train_data"
     random_seed = 1000
-elif sys.argv[1] == "val":
+elif sys.argv[1] == "test":
     train = False
-    data_dir = f"./grid-sample_{audio_name}-scale-{scale}-step-{step_size}_no-varyZ_val_data"
+    data_dir = f"./grid-sample_{audio_name}-scale-{scale}-step-{step_size}_no-varyZ_test_data"
     random_seed = 43
 else:
     raise NotImplementedError(sys.argv[1])

@@ -1,5 +1,5 @@
 import torch
-from SPEAR.data.Dataset import SPEAR_Dataset
+from data.TrainDataset import SPEAR_Dataset
 from torch.utils.data import DataLoader
 import models.NAF as NAF
 import models.SPEAR as SPEAR
@@ -123,9 +123,9 @@ def main_func(args):
     train_dataset = SPEAR_Dataset(f"{args.dataset_tag}_train_data", sample_size=args.sample_size, clip_warped_audio=args.clip_warped_audio, 
                                sample_rate=args.sampling_rate, wave_length=args.wave_length, posB=args.posB, snr_db=args.snr_db, prep_kernel_size=args.prep_kernel_size)
     train_dataloader = DataLoader(dataset=train_dataset, batch_size=args.batch_size, shuffle=True, drop_last=True, num_workers=6)
-    val_dataset = SPEAR_Dataset(f"{args.dataset_tag}_val_data", sample_size=args.val_sample_size, clip_warped_audio=args.clip_warped_audio, 
+    test_dataset = SPEAR_Dataset(f"{args.dataset_tag}_test_data", sample_size=args.test_sample_size, clip_warped_audio=args.clip_warped_audio, 
                              sample_rate=args.sampling_rate, wave_length=args.wave_length, posB=args.posB, snr_db=args.snr_db, prep_kernel_size=args.prep_kernel_size)
-    val_dataloader = DataLoader(dataset=val_dataset, batch_size=args.batch_size, shuffle=False, drop_last=True, num_workers=6)
+    test_dataloader = DataLoader(dataset=test_dataset, batch_size=args.batch_size, shuffle=False, drop_last=True, num_workers=6)
 
     # model
     if args.model_name == "naf":
@@ -198,11 +198,11 @@ def main_func(args):
         train_losses = [str(num) for num in train_losses]
 
         with torch.no_grad():
-            val_losses = train_func(args, epoch, model, basis_model, val_dataloader, device=device, train=False)
-            val_losses = [str(num) for num in val_losses]
+            test_losses = train_func(args, epoch, model, basis_model, test_dataloader, device=device, train=False)
+            test_losses = [str(num) for num in test_losses]
 
         log.write(f"Epoch: {epoch}, train_losses: {', '.join(train_losses)}, " + 
-                  f"val_losses: {', '.join(val_losses)}, lr:{lr_scheduler.get_last_lr()[0]}\n")
+                  f"test_losses: {', '.join(test_losses)}, lr:{lr_scheduler.get_last_lr()[0]}\n")
         print(f"Finish {epoch} / {args.epoch_num}")
 
         lr_scheduler.step()

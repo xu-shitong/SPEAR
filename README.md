@@ -25,16 +25,22 @@ todo: insert main result performance metric table
 The experiment environment is given in file `environment.txt`. The code has been tested on Ubuntu 22.04.
 
 ### Generate synthetic data
-To generate the synthetic train and validation data using pyroomacoustic, run the following command
+To generate the synthetic train and test data using Pyroomacoustic, run the following command
 ```shell
 python data/R2RGenerator.py train
-python data/R2RGenerator.py val
+python data/R2RGenerator.py test
 ```
 
 ### Train
 To train a model, run 
 ```shell
-python main.py config/Hyperparameter.yaml
+python train.py config/Hyperparameter.yaml
+```
+
+### Test
+To evaluate a model's test performance metric, uncomment corresponding lines in `test.py` and run the file. 
+```shell
+python test.py
 ```
 
 <!-- ### Pretrained model

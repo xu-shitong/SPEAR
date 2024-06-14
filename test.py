@@ -1,49 +1,49 @@
 import torch
-from R2RDataset_eval import R2RDataset_eval
-from R2RDataset import R2RDataset
+from data.TestDataset import TestDataset
+from data.TrainDataset import SPEAR_Dataset
 from torch.utils.data import DataLoader
-import R2R_1DLinear
-import R2R_1DTF_3d_bert
+import models.NAF as NAF
+import models.SPEAR as SPEAR
+from models.InterpolateBaseline import Interpolate_Model
 import os
 from tqdm import tqdm
 from pesq import pesq_batch
 import torch.nn.functional as F
-from Interpolate_baseline import Interpolate_Model
 from math import sqrt
 import torchvision
 from skimage.metrics import structural_similarity as ssim
 
 
 GPU = "2"
-DATASET = "grid-sample_full_sine_sweep-scale-2000-step-0.05_no-varyZ_val_data"
+DATASET = "grid-sample_full_sine_sweep-scale-2000-step-0.05_no-varyZ_test_data"
 scale = 1
 
-# DATASET = "grid-sample_engine_1-scale-10000_no-varyZ_val_data"
+# DATASET = "grid-sample_engine_1-scale-10000_no-varyZ_test_data"
 # scale = 5
 
-# DATASET = "grid-sample_person_1-scale-5000_no-varyZ_val_data"
+# DATASET = "grid-sample_person_1-scale-5000_no-varyZ_test_data"
 # scale = 7
 
-# DATASET = "grid-sample_concrete-footsteps-6752-1sec-scale-2000-step-0.05_no-varyZ_val_data"
+# DATASET = "grid-sample_concrete-footsteps-6752-1sec-scale-2000-step-0.05_no-varyZ_test_data"
 # scale = 1500
 
-# DATASET = "grid-sample_siren-scale-2000-step-0.05_no-varyZ_val_data"
+# DATASET = "grid-sample_siren-scale-2000-step-0.05_no-varyZ_test_data"
 # scale = 5
 
 threshould = 3
 
 # =========================== our model =============================
 wave_length = 32768
-LOAD_MODEL = "3022924_6000.pt" #  our final model
-model = R2R_1DTF_3d_bert.R2R_1DTF_3d_bert(
-                            grid_size=[192, 8, 16],
-                            seg_size=384,
-                            layer_channels=[512, 512, 512, 384],
-                            tf_layer_num=12,
-                            scene_x=5, scene_y=3,
-                            add_fix_pos=[False, False], refine_fix_pos=False,
-                            wave_length=wave_length
-                            )
+LOAD_MODEL = "" #  our final model
+model = SPEAR.SPEAR(
+                    grid_size=[192, 8, 16],
+                    seg_size=384,
+                    layer_channels=[512, 512, 512, 384],
+                    tf_layer_num=12,
+                    scene_x=5, scene_y=3,
+                    add_fix_pos=[False, False], refine_fix_pos=False,
+                    wave_length=wave_length
+                    )
 model.load_state_dict(torch.load(
     LOAD_MODEL,
     map_location=torch.device('cpu'))["state_dict"],
@@ -51,14 +51,14 @@ model.load_state_dict(torch.load(
 
 # # ========================== naf ==============================
 # wave_length = 32768
-# LOAD_MODEL = "3884293.pt" # naf final model
-# model = R2R_1DLinear.R2R_1DLinear(grid_size = [256, 8, 16],
-#                             layer_channels=[512, 512, 256], 
-#                             decoder_channels=[512, 512, 512], 
-#                             scene_x=5, scene_y=3,
-#                             class_values=[], class_bin_size=2,
-#                             activation=None, wave_length=wave_length
-#                             )
+# LOAD_MODEL = "" # naf final model
+# model = NAF.NAF(grid_size = [256, 8, 16],
+#                 layer_channels=[512, 512, 256], 
+#                 decoder_channels=[512, 512, 512], 
+#                 scene_x=5, scene_y=3,
+#                 class_values=[], class_bin_size=2,
+#                 activation=None, wave_length=wave_length
+#                 )
 # model.load_state_dict(torch.load(
 #     LOAD_MODEL,
 #     map_location=torch.device('cpu'))["state_dict"],
@@ -93,24 +93,24 @@ print("using device: ", dev)
 model.to(device)
 model.eval()
 
-dataset = R2RDataset_eval(DATASET, sample_size=10000, clip_warped_audio=False, sample_rate=16384, 
+dataset = TestDataset(DATASET, sample_size=10000, clip_warped_audio=False, sample_rate=16384, 
                           wave_length=wave_length, snr_db=0, threshould=threshould, scale=sqrt(scale))
 dataloader = DataLoader(dataset=dataset, batch_size=64, shuffle=False, drop_last=False, num_workers=4)
 
 
-human_dataset1 = R2RDataset_eval("grid-sample_p257_001-scale-2000-step-0.05_no-varyZ_val_data", 
+human_dataset1 = TestDataset("grid-sample_p257_001-scale-2000-step-0.05_no-varyZ_test_data", 
                                  sample_size=10000, clip_warped_audio=False, sample_rate=16384, snr_db=0, 
                                  prep_kernel_size=0, threshould=threshould, wave_length=wave_length)
-human_dataset2 = R2RDataset_eval("grid-sample_p257_009-scale-2000-step-0.05_no-varyZ_val_data", 
+human_dataset2 = TestDataset("grid-sample_p257_009-scale-2000-step-0.05_no-varyZ_test_data", 
                                  sample_size=10000, clip_warped_audio=False, sample_rate=16384, snr_db=0, 
                                  prep_kernel_size=0, threshould=threshould, wave_length=wave_length)
-human_dataset3 = R2RDataset_eval("grid-sample_p257_261-scale-2000-step-0.05_no-varyZ_val_data", 
+human_dataset3 = TestDataset("grid-sample_p257_261-scale-2000-step-0.05_no-varyZ_test_data", 
                                  sample_size=10000, clip_warped_audio=False, sample_rate=16384, snr_db=0, 
                                  prep_kernel_size=0, threshould=threshould, wave_length=wave_length)
-human_dataset4 = R2RDataset_eval("grid-sample_p257_289-scale-2000-step-0.05_no-varyZ_val_data", 
+human_dataset4 = TestDataset("grid-sample_p257_289-scale-2000-step-0.05_no-varyZ_test_data", 
                                  sample_size=10000, clip_warped_audio=False, sample_rate=16384, snr_db=0, 
                                  prep_kernel_size=0, threshould=threshould, wave_length=wave_length)
-human_dataset5 = R2RDataset_eval("grid-sample_p257_347-scale-2000-step-0.05_no-varyZ_val_data", 
+human_dataset5 = TestDataset("grid-sample_p257_347-scale-2000-step-0.05_no-varyZ_test_data", 
                                  sample_size=10000, clip_warped_audio=False, sample_rate=16384, snr_db=0, 
                                  prep_kernel_size=0, threshould=threshould, wave_length=wave_length)
 

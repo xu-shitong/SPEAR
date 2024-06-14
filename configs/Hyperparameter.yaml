@@ -34,7 +34,7 @@ basis_model: ""
 
 dataset_tag: "grid-sample_full_sine_sweep-scale-2000-step-0.05_no-varyZ"
 sample_size: 3000
-val_sample_size: 128
+test_sample_size: 128
 clip_warped_audio: False
 prep_kernel_size: 0
 sampling_rate: 16384
