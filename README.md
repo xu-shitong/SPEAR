@@ -1,6 +1,7 @@
 ## SPEAR: Receiver-to-Receiver Acoustic Neural Warping Field
 
-<a href="https://openreview.net/forum?id=240kYyCiaP"><img src=res/SPEAR_mot.jpg></a>
+<!-- <a href="https://openreview.net/forum?id=240kYyCiaP"> -->
+<img src=res/SPEAR_mot.jpg></a>
 [Yuhang He](https://yuhanghe01.github.io/),
 [Shitong Xu](https://github.com/xu-shitong),
 [Jiaxing Zhong](https://www.cs.ox.ac.uk/people/jiaxing.zhong/),
@@ -16,10 +17,30 @@ We present *SPEAR*, a continuous receiver-to-receiver acoustic neural warping fi
 
 <!-- Details of the model architecture and experimental results can be found in [our paper](https://arxiv.org/abs/2312.11269). -->
 
-## Main results
+### Challenge
+<img src=res/warpfield_irregu_vis_v2.jpg></a>
+The complex behavior of spatial audio propagation in an enclosed 3D space often results in significantly different spatial acoustic effects even for audio recorded at neighboring positions. Plot C above indicates that a 0.3-meter position change results in a significantly more pronounced warping field variation (much lower SSIM score) compared to the RGB images.
 
-todo: insert main result plot
-todo: insert main result performance metric table
+TODO: explain the task using Fig A B in this section, or simply remove the image A B.
+
+### Main results
+<div style="display: flex; align-items: flex-start;">
+
+  <!-- Metric section -->
+  <div style="margin-left: 0px;">
+    <img src="TODO.jpg"></a>
+  </div>
+
+  <!-- Visualization section -->
+  <div style="margin-left: 260px;">
+    <img src=res/warpfield_vis.jpg></a>
+  </div>
+
+</div>
+
+We qualitatively compare our model with three other baseline methods on 5 metrics, from which we can see that *SPEAR* outperforms all the three comparing methods by a large margin (except for one PSNR metric). 
+
+We also provide qualitative comparison of the predicted warping field, in which we visualize the warping field (real-part) on a synthetic dataset (A) and real-world dataset (B) gnererated by all 4 methods. We can clearly observe that our *SPEAR* is more capable of generating the irregularity pattern from the input position pair than the other baseline models. 
 
 ### Create envirionment
 The experiment environment is given in file `environment.txt`. The code has been tested on Ubuntu 22.04.
