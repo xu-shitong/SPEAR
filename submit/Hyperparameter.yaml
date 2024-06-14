@@ -1,0 +1,55 @@
+gpu: "1"
+save_epoch: 2000
+epoch_num: 10000
+grid_lr: !!float 1e-5
+backbone_lr: !!float 1e-4
+head_lr: !!float 1e-4
+lr_decay_gamma: 0.5
+lr_decay_epoch: 100000
+batch_size: 64
+weight_decay: 0.0001
+optimizer: AdamW
+
+class_values: []
+class_bin_size: 2
+
+# model_name: "naf" 
+# grid_size: [256, 8, 16]
+# layer_channels: [512, 512, 256]
+# decoder_channels: [512, 512, 512]
+# activation: "None"
+# pred_range: 16384
+
+model_name: "spear"
+grid_size: [192, 8, 16]
+layer_channels: [512, 512, 512, 384]
+tf_layer_num: 12
+seg_size: 384
+add_fix_pos: [False, False]
+refine_fix_pos: False
+pred_range: 16384
+
+load_model: ""
+basis_model: ""
+
+dataset_tag: "grid-sample_full_sine_sweep-scale-2000-step-0.05_no-varyZ"
+sample_size: 3000
+test_sample_size: 128
+clip_warped_audio: False
+prep_kernel_size: 0
+sampling_rate: 16384
+wave_length: 32768
+snr_db: 0
+scene_x: 5
+scene_y: 3
+scene_z: 4
+posB: random
+
+PooledLossWeight: 1.0
+SuperviseSpectrumLossWeight: 1.0
+SpectrumLossWeight: 1.0
+WarpedWaveformL2Weight: 0.02
+SelfConsistencyWeight: 0.0
+CloseRangeWeight: 0.0
+regional_loss: False
+scale_loss: False
