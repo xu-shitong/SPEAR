@@ -27,7 +27,7 @@ else:
 
 sample_rate = 16384
 
-class SoundNeRFDataGenerator():
+class SPEARDataGenerator():
     def __init__(self, random_seed = 100):
         np.random.seed(random_seed)
 
@@ -191,9 +191,9 @@ class SoundNeRFDataGenerator():
             #               mic_tmp['mic_waveform'].astype(np.int16))
 
 os.makedirs(data_dir, exist_ok=True)
-soundNerfGen = SoundNeRFDataGenerator(random_seed=random_seed)
+spearGen = SPEARDataGenerator(random_seed=random_seed)
 
-soundNerfGen.simulate_dataset()
+spearGen.simulate_dataset()
 
 
 
