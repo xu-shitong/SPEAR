@@ -3,8 +3,8 @@
 ### Generate synthetic data
 To generate the synthetic train and test data using Pyroomacoustic, run the following command
 ```shell
-python data/R2RGenerator.py train
-python data/R2RGenerator.py test
+python data/DataGenerator.py train
+python data/DataGenerator.py test
 ```
 
 ### Train
