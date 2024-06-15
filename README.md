@@ -12,7 +12,6 @@ Department of Computer Science, University of Oxford. Oxford. UK.
 
 **TL:DR**: a novel framework **SPEAR** for receiver-to-receiver spatial acoustic effects prediction. Contrary to traditonal methods that model spatial acoustic effects from source-to-receiver, **SPEAR** warps the spatial acoustic effects from one reference receiver to the target receiver.
 
-****T
 > **Abstract**: 
 We present *SPEAR*, a continuous receiver-to-receiver acoustic neural warping field for spatial acoustic effects prediction in an acoustic 3D space with a single stationary audio source. Unlike traditional source-to-receiver modelling methods that require prior space acoustic properties knowledge to rigorously model audio propagation from source to receiver, we propose to predict by warping the spatial acoustic effects from one reference receiver position to another target receiver position, so that the warped audio essentially accommodates all spatial acoustic effects belonging to the target position. *SPEAR* can be trained in a data much more readily accessible manner, in which we simply ask two robots to independently record spatial audio at different positions. We further theoretically prove the universal existence of the warping field if and only if one audio source presents. Three physical principles are incorporated to guide *SPEAR* network design, leading to the learned warping field physically meaningful. We demonstrate *SPEAR* superiority on both synthetic, photo-realistic and real-world dataset, showing the superiority of *SPEAR*.
 > 
