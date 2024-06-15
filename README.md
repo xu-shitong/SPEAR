@@ -1,7 +1,5 @@
 ## SPEAR: Receiver-to-Receiver Acoustic Neural Warping Field
 
-<!-- <a href="https://openreview.net/forum?id=240kYyCiaP"> -->
-<img src=res/SPEAR_mot.jpg></a>
 [Yuhang He](https://yuhanghe01.github.io/),
 [Shitong Xu](https://github.com/xu-shitong),
 [Jiaxing Zhong](https://www.cs.ox.ac.uk/people/jiaxing.zhong/),
@@ -11,6 +9,9 @@
 Department of Computer Science, University of Oxford. Oxford. UK.
 
 **TL:DR**: a novel framework **SPEAR** for receiver-to-receiver spatial acoustic effects prediction. Contrary to traditonal methods that model spatial acoustic effects from source-to-receiver, **SPEAR** warps the spatial acoustic effects from one reference receiver to the target receiver.
+
+<img src=res/SPEAR_mot.jpg></a>
+**SPEAR Motivation**: A stationary audio source is emitting audio in 3D space. Requiring neither source position nor 3D space acoustic properties, SPEAR simply requires two microphones to actively record the spatial audio independently at discrete positions. During training, SPEAR takes as input a pair of receiver positions and outputs a warping field potentially warping the recorded audio on reference position to target position. Minimizing the discrepancy between the warped audio and recorded audio enforces SPEAR to acoustically characterise the 3D space from receiver-to-receiver perspective. The learned \emph{SPEAR} is capable of predicting spatial acoustic effects at arbitrary positions.
 
 > **Abstract**: 
 We present *SPEAR*, a continuous receiver-to-receiver acoustic neural warping field for spatial acoustic effects prediction in an acoustic 3D space with a single stationary audio source. Unlike traditional source-to-receiver modelling methods that require prior space acoustic properties knowledge to rigorously model audio propagation from source to receiver, we propose to predict by warping the spatial acoustic effects from one reference receiver position to another target receiver position, so that the warped audio essentially accommodates all spatial acoustic effects belonging to the target position. *SPEAR* can be trained in a data much more readily accessible manner, in which we simply ask two robots to independently record spatial audio at different positions. We further theoretically prove the universal existence of the warping field if and only if one audio source presents. Three physical principles are incorporated to guide *SPEAR* network design, leading to the learned warping field physically meaningful. We demonstrate *SPEAR* superiority on both synthetic, photo-realistic and real-world dataset, showing the superiority of *SPEAR*.
