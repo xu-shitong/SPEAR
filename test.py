@@ -18,18 +18,6 @@ GPU = "2"
 DATASET = "grid-sample_full_sine_sweep-scale-2000-step-0.05_no-varyZ_test_data"
 scale = 1
 
-# DATASET = "grid-sample_engine_1-scale-10000_no-varyZ_test_data"
-# scale = 5
-
-# DATASET = "grid-sample_person_1-scale-5000_no-varyZ_test_data"
-# scale = 7
-
-# DATASET = "grid-sample_concrete-footsteps-6752-1sec-scale-2000-step-0.05_no-varyZ_test_data"
-# scale = 1500
-
-# DATASET = "grid-sample_siren-scale-2000-step-0.05_no-varyZ_test_data"
-# scale = 5
-
 threshould = 3
 
 # =========================== our model =============================
@@ -228,17 +216,6 @@ def single_pra_metrics(model, dataloader):
             wave2_pred = torch.fft.ifft(fft2_, norm="backward").real
             warped_wave_mse += F.mse_loss(wave2_pred, audio_tgt).item()
 
-    # print("model: ", LOAD_MODEL)
-    # print("psnr real: ", psnr_real_acc / len(dataloader))
-    # print("psnr imag: ", psnr_imag_acc / len(dataloader))
-    # print("sdr real: ", sdr_real_acc / len(dataloader))
-    # print("sdr imag: ", sdr_imag_acc / len(dataloader))
-    # print("t_mse real: ", t_mse_real_acc / len(dataloader))
-    # print("t_mse imag: ", t_mse_imag_acc / len(dataloader))
-    # print("warped fft real mse: ", warped_fft_real_mse / len(dataloader))
-    # print("warped fft imag mse: ", warped_fft_imag_mse / len(dataloader))
-    # print("warped wave mse: ", warped_wave_mse / len(dataloader))
-
     psnr_avg = (psnr_real_acc + psnr_imag_acc) / 2 / len(dataloader)
     sdr_avg = (sdr_real_acc + sdr_imag_acc) / 2 / len(dataloader)
     t_mse_avg = (t_mse_real_acc + t_mse_imag_acc) / 2 / len(dataloader)
@@ -259,19 +236,6 @@ def human_voise_metrics(model, datasets):
         sample_rate = 16000
         pesq_score = pesq_batch(sample_rate, gt_sound, pred_sound, 'wb', n_processor=4)
         return sum(pesq_score) / len(pesq_score)
-
-    # pesq = PesqLoss(0.5,
-    #     sample_rate=16384, 
-    # )
-    # def get_pesq_score(gt_sound, pred_sound):
-    #     # mos = pesq.mos(gt_sound, pred_sound)
-    #     breakpoint()
-    #     loss = pesq.mos(gt_sound, pred_sound)
-
-    #     ref = get_pesq_score_reference(audio_tgt.cpu().numpy(), audio_tgt_pred.detach().cpu().numpy())
-
-    #     breakpoint()
-    #     return 0
 
     print("evaluating", LOAD_MODEL)
     pesq_acc = 0
