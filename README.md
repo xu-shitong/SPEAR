@@ -23,114 +23,11 @@ We present *SPEAR*, a continuous receiver-to-receiver acoustic neural warping fi
 Two challenges in SPEAR learning: **Position-Sensitivity** and **Irregularity**. The position-sensitivity is represented by much lower structural similarity index (SSIM) of two neighboring-step warping fields than the two RGB images (sub-fig.~C). The warping field irregularity is represented by both warping field visualization in frequency domain (real part) and much higher sample entropy score than regular sine wave (and just half of random waveform) (sub-fig. D).
 
 ### Main results
-<div style="display: flex; align-items: flex-start;">
+<p float="left">
+  <img src="res/MainResultTable.png" width="500" />
+  <img src="res/warpfield_vis.jpg" width="500" /> 
+</p>
 
-  <!-- Metric section -->
-  <table>
-      <tr>
-          <th rowspan="2">Method</th>
-          <th colspan="5">Synthetic Data</th>
-          <!-- <th colspan="5">Photo-Realistic Data</th> -->
-          <th colspan="5">Real World Data</th>
-      </tr>
-      <tr>
-          <th>SDR</th>
-          <th>MSE</th>
-          <th>PSNR</th>
-          <th>SSIM</th>
-          <th>PSEQ</th>
-          <!-- <th>SDR</th>
-          <th>MSE</th>
-          <th>PSNR</th>
-          <th>SSIM</th>
-          <th>PSEQ</th> -->
-          <th>SDR</th>
-          <th>MSE</th>
-          <th>PSNR</th>
-          <th>SSIM</th>
-          <th>PSEQ</th>
-      </tr>
-      <tr>
-          <td>Linear Interpolate</td>
-          <td>-0.37</td>
-          <td>1.40</td>
-          <td>14.58</td>
-          <td>0.85</td>
-          <td>1.65</td>
-          <!-- <td>-0.94</td>
-          <td>1.44</td>
-          <td>14.71</td>
-          <td>0.63</td>
-          <td>2.16</td> -->
-          <td>-1.02</td>
-          <td>1.20</td>
-          <td><b>14.20</b></td>
-          <td>0.49</td>
-          <td>1.27</td>
-      </tr>
-      <tr>
-          <td>Nearest Neighbour</td>
-          <td>-2.71</td>
-          <td>2.44</td>
-          <td>15.21</td>
-          <td>0.83</td>
-          <td>1.62</td>
-          <!-- <td>-2.87</td>
-          <td>2.22</td>
-          <td>12.13</td>
-          <td>0.64</td>
-          <td>1.89</td> -->
-          <td>-3.78</td>
-          <td>2.27</td>
-          <td>12.13</td>
-          <td>0.44</td>
-          <td> 1.30 </td>
-      </tr>
-      <tr>
-          <td>NAF</td>
-          <td>0.13</td>
-          <td> 1.24 </td>
-          <td>13.08</td>
-          <td>0.86</td>
-          <td>1.77</td>
-          <!-- <td>  0.07</td>
-          <td>1.13 </td>
-          <td>14.21</td>
-          <td>0.73</td>
-          <td>1.92</td> -->
-          <td> -0.24</td>
-          <td> 1.37 </td>
-          <td>13.01</td>
-          <td>0.33</td>
-          <td> 1.30 </td>
-      </tr>
-      <tr>
-          <td>SPEAR</td>
-          <td><b>1.50</b></td>
-          <td><b>0.92</b></td>
-          <td><b>15.81</b></td>
-          <td><b>0.87</b></td>
-          <td><b>2.47 </b></td>
-          <!-- <td><b>0.66</b></td>
-          <td><b>1.03</b></td>
-          <td><b>14.57</b></td>
-          <td><b>0.75</b></td>
-          <td><b>2.18 </b></td> -->
-          <td><b>-0.20</b></td>
-          <td><b>1.04</b></td>
-          <td>14.07</td>
-          <td><b>0.75</b></td>
-          <td><b>1.45</b></td>
-      </tr>
-
-  </table>​
-
-  <!-- Visualization section -->
-  <div style="margin-left: 0px;">
-    <img src=res/warpfield_vis.jpg></a>
-  </div>
-
-</div>
 
 We qualitatively compare our model with three other baseline methods on 5 metrics, from which we can see that *SPEAR* outperforms all the three comparing methods by a large margin (except for one PSNR metric). 
 
