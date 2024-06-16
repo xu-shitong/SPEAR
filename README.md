@@ -24,8 +24,8 @@ Two challenges in SPEAR learning: **Position-Sensitivity** and **Irregularity**.
 
 ### Main results
 <p float="left">
-  <img src="res/MainResultTable.png" width="500" />
-  <img src="res/warpfield_vis.jpg" width="500" /> 
+  <img src="res/MainResultTable.png" width="400" />
+  <img src="res/warpfield_vis.jpg" width="400" /> 
 </p>
 
 
