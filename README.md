@@ -22,8 +22,6 @@ We present *SPEAR*, a continuous receiver-to-receiver acoustic neural warping fi
 <img src=res/warpfield_irregu_vis_v2.jpg></a>
 Two challenges in SPEAR learning: **Position-Sensitivity** and **Irregularity**. The position-sensitivity is represented by much lower structural similarity index (SSIM) of two neighboring-step warping fields than the two RGB images (sub-fig.~C). The warping field irregularity is represented by both warping field visualization in frequency domain (real part) and much higher sample entropy score than regular sine wave (and just half of random waveform) (sub-fig. D).
 
-TODO: explain the task using Fig A B in this section, or simply remove the image A B.
-
 ### Main results
 <div style="display: flex; align-items: flex-start;">
 
@@ -160,6 +158,10 @@ To evaluate a model's test performance metric, uncomment corresponding lines in 
 ```shell
 python test.py
 ```
+
+### Example Models
+We provide [trained SPEAR models](https://drive.google.com/drive/folders/1NGhwLEprhPiHWhrJbbYsSx9ne6frUZUe?usp=sharing) in 4 scenes: Synthetic Shoe Box Room, Office 0 and Office 4 in Replica dataset, and Classroom scene provided in Room Impulse Response Data Set.
+
 
 ### Generated examples
 We provide examples of generated audios in `examples` folder
