@@ -206,7 +206,7 @@ todo
 todo -->
 
 ## Contacts :email:
-If you have any questions or suggestions about this repo, please feel free to contact me (yuhang.he@st-hughs.ox.ac.uk or shitong.xu@st-annes.ox.ac.uk).
+If you have any questions or suggestions, welcome to contact us (yuhang.he@cs.ox.ac.uk or shitong.xu@st-annes.ox.ac.uk).
 
 
 
