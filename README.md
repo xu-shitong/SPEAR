@@ -48,7 +48,7 @@ python data/R2RGenerator.py test
 #### Step 2: Train
 To train a model, run 
 ```shell
-python train.py config/Hyperparameter.yaml
+python train.py configs/Hyperparameter.yaml
 ```
 
 #### Step 3: Test
