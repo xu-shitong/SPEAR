@@ -4,10 +4,9 @@ from .PosEnc import PosEncoder
 import math
 import torch.nn.functional as F
 import math
-from huggingface_hub import PyTorchModelHubMixin
 
 
-class SPEAR(nn.Module, PyTorchModelHubMixin):
+class SPEAR(nn.Module):
     def __init__(self, grid_size=[192, 8, 16], seg_size=384, layer_channels=[512, 512, 512, 384], 
                  tf_layer_num=12, scene_x=5, scene_y=3,
                  add_fix_pos=[False, False], refine_fix_pos=False, pred_range=16384, wave_length=32768):
@@ -137,9 +136,3 @@ class SPEAR(nn.Module, PyTorchModelHubMixin):
         warp_fft = torch.hstack([half_warp_fft, torch.conj(half_warp_fft.flip((-1, )))])
 
         return warp_fft
-
-
-
-
-
-
