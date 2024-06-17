@@ -51,7 +51,7 @@ To train a model, run
 python train.py config/Hyperparameter.yaml
 ```
 
-#### Step3: Test
+#### Step 3: Test
 To evaluate a model's test performance metric, uncomment corresponding lines in `test.py` and run the file. 
 ```shell
 python test.py
