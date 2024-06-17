@@ -58,7 +58,14 @@ python test.py
 ```
 
 #### Prtrained Models
-We provide [trained SPEAR models](https://drive.google.com/drive/folders/1NGhwLEprhPiHWhrJbbYsSx9ne6frUZUe?usp=sharing) in 4 scenes: Synthetic Shoe Box Room, Office 0 and Office 4 in Replica dataset, and Classroom scene provided in Room Impulse Response Data Set.
+We provide trained SPEAR models in 4 scenes: Synthetic Shoe Box Room, Office 0 and Office 4 in Replica dataset, and Classroom scene provided in Room Impulse Response Data Set. These 4 models are available on Huggingface. Download by using the corresponding file name given in the following 4 commands:
+
+```python
+model = SPEAR.from_pretrained("ShitongXu/SPEAR_Synthetic_shoebox_model")
+model = SPEAR.from_pretrained("ShitongXu/SPEAR_Replica_office_4_model")
+model = SPEAR.from_pretrained("ShitongXu/SPEAR_Replica_office_0_model")
+model = SPEAR.from_pretrained("ShitongXu/SPEAR_Real_classroom_model")
+```
 
 
 ### Generated examples

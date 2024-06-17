@@ -21,21 +21,7 @@ scale = 1
 threshould = 3
 
 # =========================== our model =============================
-wave_length = 32768
-LOAD_MODEL = "" #  our final model
-model = SPEAR.SPEAR(
-                    grid_size=[192, 8, 16],
-                    seg_size=384,
-                    layer_channels=[512, 512, 512, 384],
-                    tf_layer_num=12,
-                    scene_x=5, scene_y=3,
-                    add_fix_pos=[False, False], refine_fix_pos=False,
-                    wave_length=wave_length
-                    )
-model.load_state_dict(torch.load(
-    LOAD_MODEL,
-    map_location=torch.device('cpu'))["state_dict"],
-    strict=True)
+model = SPEAR.from_pretrained("ShitongXu/SPEAR_Synthetic_shoebox_model")
 
 # # ========================== naf ==============================
 # wave_length = 32768
