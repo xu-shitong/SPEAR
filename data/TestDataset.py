@@ -57,7 +57,6 @@ class TestDataset(Dataset):
         fft1 = torch.fft.fft(waveform1, norm="backward")
         fft2 = torch.fft.fft(waveform2, norm="backward")
         warp = (fft2 / fft1)
-        # warp = warp / 10
         warp = torch.nan_to_num(warp, nan=0)
         warp.real = warp.real.clip(min=-self.threshould, max=self.threshould)
         warp.imag = warp.imag.clip(min=-self.threshould, max=self.threshould)
@@ -70,7 +69,6 @@ class TestDataset(Dataset):
         fft1 = torch.fft.fft(waveform1, norm="backward")
         fft2 = torch.fft.fft(waveform2, norm="backward")
         warp = (fft2 / fft1)
-        # warp = warp / 10
         warp = torch.nan_to_num(warp, nan=0)
         warp.real = warp.real.clip(min=-self.threshould, max=self.threshould)
         warp.imag = warp.imag.clip(min=-self.threshould, max=self.threshould)
@@ -105,7 +103,6 @@ class TestDataset(Dataset):
 
     def __getitem__(self, idx):
         # get audio indexed by idx
-        # idx = 0
         idx2 = idx % (len(self.audio_files) - 1)
         idx = int(idx // (len(self.audio_files) - 1))
         if idx2 >= idx:
@@ -136,7 +133,6 @@ class TestDataset(Dataset):
         # extract position coordinates for 2 mics
         numbers1 = self.extract_position(file_name1)
         numbers2 = self.extract_position(file_name2)
-        # assert (torch.tensor(numbers2[1:]) == torch.tensor([1.0656, 2.1985, 0.0000])).all(), numbers2
 
         # extract rir
         # rir1 = torch.from_numpy(self.rirs[idx][0])
