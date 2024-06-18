@@ -42,8 +42,7 @@ class SPEAR_time_domain(nn.Module):
                     nn.ReLU()))
             in_channels = c
 
-        # transformer decoder (input is grid feature, condition is position encoding)
-
+        # transformer decoder 
         _decoder_layer = nn.TransformerEncoderLayer(
             d_model=seg_size, 
             nhead=8, 
