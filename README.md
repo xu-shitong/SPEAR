@@ -76,6 +76,9 @@ We provide examples of generated audios in `examples` folder
       title={SPEAR: Receiver-to-Receiver Acoustic Neural Warping Field}, 
       author={Yuhang He and Shitong Xu and Jia-Xing Zhong and Sangyun Shin and Niki Trigoni and Andrew Markham},
       year={2024},
+      eprint={2406.11006},
+      archivePrefix={arXiv},
+      primaryClass={cs.SD}
 }
 ```
 
