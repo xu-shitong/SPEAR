@@ -48,15 +48,10 @@ class SPEARDataGenerator():
         e_scatter = 0.15
 
         room_corner = np.array([[0, 0], [room_Lx, 0], [room_Lx, room_Ly], [0, room_Ly]]).T
-        # room_corner = np.array([[0, 0], [room_Lx / 2, 0], [room_Lx / 2, room_Ly / 3], [room_Lx, 0],
-        #                         [room_Lx, room_Ly], [room_Lx / 2, room_Ly], [room_Lx / 2, room_Ly / 3 * 2], 
-        #                         [0, room_Ly / 3 * 2]]).T
         material = self.init_material(e_abs=e_abs,
                                       e_scattering=e_scatter)
 
         snr=random.normalvariate(mu=-10000, sigma=2)
-        # sigma2_awgn = 10 ** (snr / 10) * 1
-        # sigma2_awgn = 1
 
         room = pra.Room.from_corners(
             corners=room_corner,
@@ -161,10 +156,6 @@ class SPEARDataGenerator():
         with open(os.path.join(save_dir,'room_param.pickle'), 'wb') as handle:
             pickle.dump(room_param, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-        # pra_room.mic_array.to_wav(os.path.join(save_dir, 'mic_array.wav'),
-        #                           norm=True,
-        #                           bitdepth=np.int16)
-
         for mic_id in range(mic_loc.shape[0]):
             mic_tmp = dict()
             mic_tmp['mic_waveform'] = simulated_waveforms[mic_id,:]
@@ -176,19 +167,12 @@ class SPEARDataGenerator():
                                                                              mic_loc_tmp[0],
                                                                              mic_loc_tmp[1],
                                                                              mic_loc_tmp[2])
-            #
-            # with open(os.path.join(save_dir, save_wave_basename), 'wb') as handle:
-            #     pickle.dump(mic_tmp, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
             soundfile.write(os.path.join(save_dir, save_wave_basename.replace('.pickle','.wav')),
                             # mic_tmp['mic_waveform'].astype(np.int16)[0:sample_rate],
                             mic_tmp['mic_waveform'].astype(np.int16),
                             samplerate=sample_rate,
                             subtype='PCM_16')
-
-            # wavfile.write(os.path.join(save_dir, save_wave_basename.replace('.pickle','_wavefile.wav')),
-            #               16000,
-            #               mic_tmp['mic_waveform'].astype(np.int16))
 
 os.makedirs(data_dir, exist_ok=True)
 spearGen = SPEARDataGenerator(random_seed=random_seed)
