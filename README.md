@@ -34,7 +34,7 @@ We also provide qualitative comparison of the predicted warping field, in which 
 
 ### Result Reproduction
 
-#### Step1: Create Envirionment
+#### Step 1: Create Envirionment
 The experiment environment is given in file `environment.txt`. The code has been tested on Ubuntu 22.04.
 
 #### Generate synthetic data
