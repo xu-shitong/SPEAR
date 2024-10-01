@@ -13,11 +13,9 @@ optimizer: AdamW
 class_values: []
 class_bin_size: 2
 
-# model_name: "naf" 
-# grid_size: [256, 8, 16]
-# layer_channels: [512, 512, 256]
-# decoder_channels: [512, 512, 512]
-# activation: "None"
+# model_name: "naf"
+# layer_channels: [512, 512, 512, 256]
+# decoder_channels: [512, 512, 512, 512]
 # pred_range: 16384
 
 model_name: "spear"

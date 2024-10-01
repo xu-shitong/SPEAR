@@ -129,12 +129,9 @@ def main_func(args):
 
     # model
     if args.model_name == "naf":
-        model = NAF.NAF(grid_size = args.grid_size,
-                                  layer_channels=args.layer_channels, 
-                                  decoder_channels=args.decoder_channels, 
-                                  scene_x=args.scene_x, scene_y=args.scene_y,
-                                  class_values=args.class_values, class_bin_size=args.class_bin_size,
-                                  activation=args.activation, wave_length=args.wave_length
+        model = NAF.NAF(scene_x=args.scene_x, scene_y=args.scene_y,
+                                  layer_channels=args.layer_channels,
+                                  decoder_channels=args.decoder_channels,
                                   )
         model.to(device)
     elif args.model_name == "spear":
