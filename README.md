@@ -24,8 +24,11 @@ Two challenges in SPEAR learning: **Position-Sensitivity** and **Irregularity**.
 
 ### Main results
 <p float="middle">
-  <img src="res/MainResultTable.png" width="400" />
-  <img src="res/warpfield_vis.jpg" width="350" /> 
+  <img src="res/MainResultTable.png" />
+</p>
+
+<p>
+  <img src="res/warpfield_vis.png" /> 
 </p>
 
 We qualitatively compare our model with three other baseline methods on 5 metrics, from which we can see that *SPEAR* outperforms all the three comparing methods by a large margin (except for one PSNR metric). 

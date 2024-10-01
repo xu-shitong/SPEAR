@@ -13,15 +13,14 @@ sigma2_awgn = None
 step_size = 0.05
 audio_name = "full_sine_sweep" # scale 2000
 scale = 2000
+random_seed = 1000
 
 if sys.argv[1] == "train":
     train = True
     data_dir = f"./grid-sample_{audio_name}-scale-{scale}-step-{step_size}_no-varyZ_train_data"
-    random_seed = 1000
 elif sys.argv[1] == "test":
     train = False
     data_dir = f"./grid-sample_{audio_name}-scale-{scale}-step-{step_size}_no-varyZ_test_data"
-    random_seed = 43
 else:
     raise NotImplementedError(sys.argv[1])
 
@@ -79,7 +78,7 @@ class SPEARDataGenerator():
         audio_anechoic, sr = librosa.load(seed_sound_filename, sr=sample_rate)
         audio_anechoic = audio_anechoic[:sample_rate]
 
-        ss_loc = np.array([2., 2., 2.], np.float32)
+        ss_loc = np.array([1., 1., 1.], np.float32)
 
         pra_room.add_source(ss_loc, signal=audio_anechoic * scale)
 

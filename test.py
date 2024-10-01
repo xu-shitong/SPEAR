@@ -18,8 +18,6 @@ GPU = "2"
 DATASET = "grid-sample_full_sine_sweep-scale-2000-step-0.05_no-varyZ_test_data"
 scale = 1
 
-threshould = 3
-
 # =========================== our model =============================
 wave_length = 32768
 LOAD_MODEL = "" #  our final model
@@ -59,7 +57,7 @@ model.load_state_dict(torch.load(
 # model = Interpolate_Model(TrainDataset("grid-sample_full_sine_sweep-scale-2000-step-0.05_no-varyZ_train_data", 
 #                                      sample_size=3000, clip_warped_audio=False, sample_rate=16384, wave_length=32768, 
 #                                      posB="fixed", snr_db=30, prep_kernel_size=0),
-#                          k=5, threshould=threshould)
+#                          k=5, threshould=10)
 
 # # ========================= nearest ===============================
 # wave_length = 32768
@@ -67,7 +65,7 @@ model.load_state_dict(torch.load(
 # model = Interpolate_Model(TrainDataset("grid-sample_full_sine_sweep-scale-2000-step-0.05_no-varyZ_train_data", 
 #                                      sample_size=3000, clip_warped_audio=False, sample_rate=16384, wave_length=32768, 
 #                                      posB="fixed", snr_db=20, prep_kernel_size=0),
-#                          k=1, threshould=threshould)
+#                          k=1, threshould=10)
 
 os.environ["CUDA_VISIBLE_DEVICES"] = GPU
 torch.cuda.manual_seed(42)
@@ -82,25 +80,25 @@ model.to(device)
 model.eval()
 
 dataset = TestDataset(DATASET, sample_size=10000, clip_warped_audio=False, sample_rate=16384, 
-                          wave_length=wave_length, snr_db=0, threshould=threshould, scale=sqrt(scale))
+                          wave_length=wave_length, snr_db=0, threshould=3, scale=sqrt(scale))
 dataloader = DataLoader(dataset=dataset, batch_size=64, shuffle=False, drop_last=False, num_workers=4)
 
 
 human_dataset1 = TestDataset("grid-sample_p257_001-scale-2000-step-0.05_no-varyZ_test_data", 
                                  sample_size=10000, clip_warped_audio=False, sample_rate=16384, snr_db=0, 
-                                 prep_kernel_size=0, threshould=threshould, wave_length=wave_length)
+                                 prep_kernel_size=0, threshould=3, wave_length=wave_length)
 human_dataset2 = TestDataset("grid-sample_p257_009-scale-2000-step-0.05_no-varyZ_test_data", 
                                  sample_size=10000, clip_warped_audio=False, sample_rate=16384, snr_db=0, 
-                                 prep_kernel_size=0, threshould=threshould, wave_length=wave_length)
+                                 prep_kernel_size=0, threshould=3, wave_length=wave_length)
 human_dataset3 = TestDataset("grid-sample_p257_261-scale-2000-step-0.05_no-varyZ_test_data", 
                                  sample_size=10000, clip_warped_audio=False, sample_rate=16384, snr_db=0, 
-                                 prep_kernel_size=0, threshould=threshould, wave_length=wave_length)
+                                 prep_kernel_size=0, threshould=3, wave_length=wave_length)
 human_dataset4 = TestDataset("grid-sample_p257_289-scale-2000-step-0.05_no-varyZ_test_data", 
                                  sample_size=10000, clip_warped_audio=False, sample_rate=16384, snr_db=0, 
-                                 prep_kernel_size=0, threshould=threshould, wave_length=wave_length)
+                                 prep_kernel_size=0, threshould=3, wave_length=wave_length)
 human_dataset5 = TestDataset("grid-sample_p257_347-scale-2000-step-0.05_no-varyZ_test_data", 
                                  sample_size=10000, clip_warped_audio=False, sample_rate=16384, snr_db=0, 
-                                 prep_kernel_size=0, threshould=threshould, wave_length=wave_length)
+                                 prep_kernel_size=0, threshould=3, wave_length=wave_length)
 
 def single_pra_metrics(model, dataloader):
 
